@@ -1,4 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvfnilogxnxmd"]
+[gd_scene load_steps=7 format=3 uid="uid://bvfnilogxnxmd"]
+
+[ext_resource type="PackedScene" uid="uid://cdt84khtf7s05" path="res://player_bike.tscn" id="1_80nbo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_e2o6t"]
+sky_material = SubResource("ProceduralSkyMaterial_80nbo")
+
+[sub_resource type="Environment" id="Environment_feb5d"]
+background_mode = 2
+sky = SubResource("Sky_e2o6t")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwb40"]
 albedo_color = Color(0.7943986, 3.2247603e-06, 9.62615e-07, 1)
@@ -8,15 +23,22 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_feb5d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="Floor coloring" type="CSGCylinder3D" parent="."]
 radius = 45.0
 material = SubResource("StandardMaterial3D_mwb40")
 
 [node name="Subtracter" type="CSGCylinder3D" parent="Floor coloring"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3964863, 0)
 operation = 2
 radius = 40.0
-height = 1.0
+height = 5.718
 
 [node name="Ground" type="CSGBox3D" parent="."]
 use_collision = true
@@ -33,3 +55,6 @@ height = 1.0
 operation = 2
 radius = 45.0
 height = 1.0
+
+[node name="Player Bike" parent="." instance=ExtResource("1_80nbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3964863, 0)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdt84khtf7s05"]
+
+[ext_resource type="Script" uid="uid://v07xqsexi38o" path="res://scripts/player_bike.gd" id="1_5dyll"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bexqm"]
+
+[node name="Player Bike" type="CharacterBody3D"]
+script = ExtResource("1_5dyll")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_bexqm")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.01055908, 0.99994427, 0, -0.99994427, 0.01055908, 0, 0, 0, 1, 0, 0, 0)
