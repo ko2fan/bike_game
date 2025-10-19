@@ -1,7 +1,35 @@
-[gd_scene format=3 uid="uid://bvfnilogxnxmd"]
+[gd_scene load_steps=3 format=3 uid="uid://bvfnilogxnxmd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwb40"]
+albedo_color = Color(0.7943986, 3.2247603e-06, 9.62615e-07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node3D"]
 
-[node name="Test Ground" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43041992, 0)
-size = Vector3(100, 0.14, 100)
+[node name="Floor coloring" type="CSGCylinder3D" parent="."]
+radius = 45.0
+material = SubResource("StandardMaterial3D_mwb40")
+
+[node name="Subtracter" type="CSGCylinder3D" parent="Floor coloring"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+operation = 2
+radius = 40.0
+height = 1.0
+
+[node name="Ground" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_80nbo")
+
+[node name="Walls" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+use_collision = true
+radius = 46.0
+height = 1.0
+
+[node name="Subtracter" type="CSGCylinder3D" parent="Walls"]
+operation = 2
+radius = 45.0
+height = 1.0
